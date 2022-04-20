@@ -1,6 +1,6 @@
 import * as types from './constants';
 
-const reducer = (state, { type, payload }) => {
+const reducer = (state: { track: any }, { type, payload }: any) => {
   switch (type) {
     case types.SET_TITLE: {
       return {
