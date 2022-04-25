@@ -9,10 +9,11 @@ import { Navigate, useLocation } from 'react-router-dom';
 // api
 import { authApi } from '../api/authApi.js';
 
-export default function AuthGuard({ children }) {
+// change children to string
+const AuthGuard = (children: string) => {
   const location = useLocation();
 
-  const [isAuth, setIsAuth] = useState(null);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,11 +30,11 @@ export default function AuthGuard({ children }) {
     });
   }, [isAuth]);
 
-  if (isAuth === null) {
-    return null;
-  } else if (!isAuth) {
-    return <Navigate to="/auth/login" replace state={{ from: location }} />;
-  }
+  return isAuth === true ? (
+    children
+  ) : (
+    <Navigate to={location.pathname} replace state={{ from: location }} />
+  );
+};
 
-  return children;
-}
+export default AuthGuard;

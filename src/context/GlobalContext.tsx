@@ -15,15 +15,15 @@ interface InitialStateType {
   setLink: (link: string) => void;
 }
 
-const initialState = {
+const initialState: InitialStateType = {
   track: {
     title: 'None',
     artist: 'N/A',
     link: '',
   },
-  setTitle: null,
-  setArtist: null,
-  setLink: null,
+  setTitle: () => {},
+  setArtist: () => {},
+  setLink: () => {},
 };
 
 const GlobalContext = createContext<InitialStateType>(initialState);
