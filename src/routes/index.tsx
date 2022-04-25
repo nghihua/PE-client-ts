@@ -3,11 +3,11 @@ import React from 'react';
 import UserGuard from '../guards/UserGuard';
 import AdminGuard from '../guards/AdminGuard';
 
-import LandingPage from '../pages/LandingPage';
-import NotFound from '../pages/NotFound';
-import Profile from '../pages/Profile';
-import About from '../pages/About';
-import Dashboard from '../pages/Dashboard';
+import LandingPage from '../pages/public/LandingPage';
+import NotFound from '../pages/public/NotFound';
+import About from '../pages/public/About';
+import Profile from '../pages/user/Profile';
+import Dashboard from '../pages/admin/Dashboard';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 

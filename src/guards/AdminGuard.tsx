@@ -2,15 +2,7 @@
 // user-only routes
 
 import React, { useState, useEffect } from 'react';
-import {
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-  RouteProps,
-  Router,
-  Outlet,
-} from 'react-router-dom';
+import { Navigate, useLocation, RouteProps, Outlet } from 'react-router-dom';
 
 // api
 import { authApi } from '../api/authApi.js';

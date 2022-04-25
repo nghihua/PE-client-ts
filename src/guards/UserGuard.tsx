@@ -2,18 +2,10 @@
 // user-only routes
 
 import React, { useState, useEffect } from 'react';
-import {
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-  RouteProps,
-  Router,
-  Outlet,
-} from 'react-router-dom';
+import { Navigate, useLocation, RouteProps, Outlet } from 'react-router-dom';
 
 // api
-import { authApi } from '../api/authApi.js';
+import { authApi } from '../api/authApi';
 
 export default function UserGuard({ ...routeProps }: RouteProps) {
   const location = useLocation();
@@ -34,6 +26,22 @@ export default function UserGuard({ ...routeProps }: RouteProps) {
   //     }
   //   });
   // }, [isAuth]);
+
+  // useEffect(() => {
+
+  //   async function login() {
+  //     const result = await authApi.login({
+  //       email: 'huanhatgianghi@gmail.com',
+  //       password: 'ahaha'
+  //     });
+  //     return result;
+  //   }
+
+  //   login().then((result) => {
+  //     console.log(result);
+  //   })
+
+  // }, []);
 
   if (!isAuth) {
     return <Navigate to={{ pathname: '/' }} />;
