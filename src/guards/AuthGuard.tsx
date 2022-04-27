@@ -17,8 +17,8 @@ const AuthGuard = (children: string) => {
 
   useEffect(() => {
     async function fetchData() {
-      const { message } = await authApi.checkAuth();
-      return message.success;
+      const res = await authApi.validateLoggedStatus();
+      return res !== null;
     }
 
     fetchData().then((success) => {
