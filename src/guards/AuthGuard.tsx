@@ -1,40 +1,30 @@
-// Used in routing to guard routes
-
-// E.g: AuthGuard is used to prevent guests from visiting
-// user-only routes
-
 import React, { useState, useEffect } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { authApi } from '../api/authApi';
+import { Navigate, useLocation, RouteProps, Outlet } from 'react-router-dom';
 
-// api
-import { authApi } from '../api/authApi.js';
-
-// change children to string
-const AuthGuard = (children: string) => {
+const AdminGuard = ({ ...routeProps }: RouteProps) => {
   const location = useLocation();
-
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
-      const res = await authApi.validateLoggedStatus();
-      return res !== null;
+      const role = await authApi.validateRole();
+      return role;
     }
 
-    fetchData().then((success) => {
-      if (success) {
+    fetchData().then((message) => {
+      if (message === 1) {
         setIsAuth(true);
-      } else {
-        setIsAuth(false);
       }
     });
   }, [isAuth]);
 
-  return isAuth === true ? (
-    children
-  ) : (
-    <Navigate to={location.pathname} replace state={{ from: location }} />
-  );
+  if (!isAuth) {
+    console.log('not auth');
+    return <Navigate to={{ pathname: '/' }} />;
+  }
+
+  return <Outlet />;
 };
 
-export default AuthGuard;
+export default AdminGuard;
